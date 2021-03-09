@@ -32,3 +32,10 @@ def multiplying(start=10, end=100):
     num2 = randint(start, end)
     printf(f"{num1} * {num2} = ", "")
     return num1 * num2
+
+
+def dividing(start=1000, end=10000):
+    num1 = randint(start, end)
+    num2 = randint(start, end)
+    printf(f"{max(num1, num2)} / {min(num1, num2)} = ", "")
+    return num1 / num2
