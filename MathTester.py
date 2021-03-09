@@ -25,3 +25,10 @@ def subtracting(start=10000, end=100000):
     num2 = randint(start, end)
     printf(f"{num1} - {num2} = ", "")
     return num1 - num2
+
+
+def multiplying(start=10, end=100):
+    num1 = randint(start, end)
+    num2 = randint(start, end)
+    printf(f"{num1} * {num2} = ", "")
+    return num1 * num2
