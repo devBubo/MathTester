@@ -17,7 +17,7 @@ defaults = {"adding": ("+", 10000, 100000), "subtracting": ("-", 10000, 100000),
 
 
 def calculating(command, start=None, end=None):
-    if start == None or end == None:
+    if start == None or end == None:  #in case optional parameters aren't passed
         start = defaults[command][1]
         end = defaults[command][2]
     num1 = randint(start, end)
@@ -57,7 +57,8 @@ while True:
             elif len(command) == 1:
                 result = calculating(command[0])  #prints equation, and saves its result to result
             else:
-                raise Exception("Invalid format, your command should be in format <command> or in format <command start end>, e.g adding or adding 50000 500000.")
+                raise Exception("Invalid format, your command should be in format 'command' or in format 'command start end', e.g adding or adding 50000 500000.")
+            timerStart = time() #starting timing, how long does it take you to solve the equation
             yourResult = input("Enter your result: ")
             if yourResult == "cancel":
                 command = "cancel"
@@ -66,5 +67,6 @@ while True:
                     command = "cancel"
                     break
                 yourResult = input("Enter your result: ")
+            print(f"{round(time() - timerStart, 2)}s")
         else:
             raise Exception("Invalid format")
