@@ -7,12 +7,6 @@ def printf(text, divider="\n"): #faster print
     text = str(text)
     stdout.write(text + divider)
 
-
-def input(prompt="\n"): #faster input
-    stdout.write(prompt)
-    return stdin.readline().strip()
-
-
 defaults = {"adding": ("+", 10000, 100000), "subtracting": ("-", 10000, 100000), "multiplying": ("*", 10, 100), "dividing": ("/", 1000, 10000)} #command: (operator, start, end)
 
 
@@ -59,14 +53,14 @@ while True:
             else:
                 raise Exception("Invalid format, your command should be in format 'command' or in format 'command start end', e.g adding or adding 50000 500000.")
             timerStart = time() #starting timing, how long does it take you to solve the equation
-            yourResult = input()
+            yourResult = input("Enter your result: ")
             if yourResult == "cancel":
                 command = "cancel"
             while yourResult not in (str(result), "cancel"):
                 if yourResult == "cancel":
                     command = "cancel"
                     break
-                yourResult = input()
+                yourResult = input("Enter your result: ")
             print(f"{round(time() - timerStart, 2)}s")
         else:
             raise Exception("Invalid format")
