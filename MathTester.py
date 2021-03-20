@@ -59,14 +59,14 @@ while True:
             else:
                 raise Exception("Invalid format, your command should be in format 'command' or in format 'command start end', e.g adding or adding 50000 500000.")
             timerStart = time() #starting timing, how long does it take you to solve the equation
-            yourResult = input("Enter your result: ")
+            yourResult = input()
             if yourResult == "cancel":
                 command = "cancel"
             while yourResult not in (str(result), "cancel"):
                 if yourResult == "cancel":
                     command = "cancel"
                     break
-                yourResult = input("Enter your result: ")
+                yourResult = input()
             print(f"{round(time() - timerStart, 2)}s")
         else:
             raise Exception("Invalid format")
