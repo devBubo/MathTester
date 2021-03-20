@@ -13,34 +13,9 @@ def input(prompt="\n"): #faster input
     return stdin.readline().strip()
 
 
-def adding(start=10000, end=100000):
-    num1 = randint(start, end)
-    num2 = randint(start, end)
-    printf(f"{num1} + {num2} = ", "")
-    return num1 + num2
-
-
-def subtracting(start=10000, end=100000):
-    num1 = randint(start, end)
-    num2 = randint(start, end)
-    printf(f"{num1} - {num2} = ", "")
-    return num1 - num2
-
-
-def multiplying(start=10, end=100):
-    num1 = randint(start, end)
-    num2 = randint(start, end)
-    printf(f"{num1} * {num2} = ", "")
-    return num1 * num2
-
-
-def dividing(start=1000, end=10000):
-    num1 = randint(start, end)
-    num2 = randint(start, end)
-    printf(f"{max(num1, num2)} / {min(num1, num2)} = ", "")
-    return num1 / num2
-
 defaults = {"adding": ("+", 10000, 100000), "subtracting": ("-", 10000, 100000), "multiplying": ("*", 10, 100), "dividing": ("/", 1000, 10000)} #command: (operator, start, end)
+
+
 def calculating(command, start=None, end=None):
     if start == None or end == None:
         start = defaults[command][1]
@@ -53,7 +28,6 @@ def calculating(command, start=None, end=None):
     return round(eval(f"{num1} {defaults[command][0]} {num2}"), 2)
 
 
-calculating("adding")
 def helping():
     print("""
 Created for people, who want to calculate fast, and without a calculator. @DevBubo
@@ -65,7 +39,7 @@ dividing
 
 You can exit of any mode by typing "Cancel".
 You can also edit the range of numbers, that will appear in your calculation by typing a command,
-you want and adding range, e.g "add 50000 5000000"
+you want and adding range, e.g "adding 50000 5000000"
 If you want this message to reappear, type "cancel".
 """)
 
@@ -75,10 +49,15 @@ command_stopper = False
 while True:
     if command == "cancel": #pops up help menu
         helping()
-        command = input("What would you like to do? ")
+        command = input("What would you like to do? ").split()
     else:
-        if command in defaults:
-            result = calculating(command)  #prints equation, and saves its result to result
+        if command[0] in defaults:
+            if len(command) == 3:
+                result = calculating(command[0], int(command[1]), int(command[2]))
+            elif len(command) == 1:
+                result = calculating(command[0])  #prints equation, and saves its result to result
+            else:
+                raise Exception("Invalid format, your command should be in format <command> or in format <command start end>, e.g adding or adding 50000 500000.")
             yourResult = input("Enter your result: ")
             if yourResult == "cancel":
                 command = "cancel"
