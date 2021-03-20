@@ -49,7 +49,7 @@ def calculating(command, start=None, end=None):
     num2 = randint(start, end)
     if command in ("subtracting", "dividing"): #In case we get negative or number between 0 and 1
         num1, num2 = max(num1, num2), min(num1, num2)
-    printf(f"{num1} {defaults[command][0]} {num2} = ", "")
+    printf(f"{num1} {defaults[command][0]} {num2} = ")
     return round(eval(f"{num1} {defaults[command][0]} {num2}"), 2)
 
 
@@ -79,6 +79,13 @@ while True:
     else:
         if command in defaults:
             result = calculating(command)  #prints equation, and saves its result to result
-            yourResult = float(input("Enter your result: "))
-            while yourResult not in (result, "cancel"):
-                yourResult = float(input("Enter your result: "))
+            yourResult = input("Enter your result: ")
+            if yourResult == "cancel":
+                command = "cancel"
+            while yourResult not in (str(result), "cancel"):
+                if yourResult == "cancel":
+                    command = "cancel"
+                    break
+                yourResult = input("Enter your result: ")
+        else:
+            raise Exception("Invalid format")
